@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PlayZone – התחברות / הרשמה</title>
+  <link rel="stylesheet" href="../css/login.css" />
+</head>
+<body>
+  <main class="login-wrap">
+    <section class="login-card">
+      <div class="tabs">
+        <button id="tab-login" class="tab active">התחברות</button>
+        <button id="tab-register" class="tab">הרשמה</button>
+      </div>
+
+      <div class="card-body">
+        <h1 class="title">FunZone</h1>
+
+        <!-- LOGIN -->
+        <form id="panel-login" class="panel">
+          <label>
+           שם משתמש
+            <input id="login-username" type="text" required>
+          </label>
+
+          <label>
+           סיסמה
+            <input id="login-password" type="password" required>
+          </label>
+
+          <p id="login-error" class="msg error"></p>
+          <button type="submit">כניסה</button>
+        </form>
+
+        <!-- REGISTER -->
+        <form id="panel-register" class="panel hidden">
+          <label>
+           שם משתמש
+            <input id="reg-username" type="text" required>
+          </label>
+
+          <label>
+           סיסמה
+            <input id="reg-password" type="password" required>
+          </label>
+
+          <label>
+           אימות סיסמה
+            <input id="reg-confirm" type="password" required>
+          </label>
+
+          <p id="reg-error" class="msg error"></p>
+          <button type="submit">הרשמה</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/storage.js"></script>
+  <script src="../js/login.js"></script>
+</body>
+</html>
