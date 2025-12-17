@@ -5,13 +5,13 @@ const panelLogin = document.getElementById("panel-login");
 const panelRegister = document.getElementById("panel-register");
 
 function showPanel(which){
-  const login = which === "login";
+  const boolLogin = (which === "login");
 
-  tabLogin.classList.toggle("active", login);
-  tabRegister.classList.toggle("active", !login);
+  tabLogin.classList.toggle("active", boolLogin);
+  tabRegister.classList.toggle("active", !boolLogin);
 
-  panelLogin.classList.toggle("hidden", !login);
-  panelRegister.classList.toggle("hidden", login);
+  panelLogin.classList.toggle("hidden", !boolLogin);
+  panelRegister.classList.toggle("hidden", boolLogin);
 
   clearMessages();
 }
@@ -41,19 +41,41 @@ panelRegister.addEventListener("submit", (e) => {
   const username = document.getElementById("reg-username").value.trim();
   const password = document.getElementById("reg-password").value;
   const confirm = document.getElementById("reg-confirm").value;
+  const email = document.getElementById("reg-email").value.trim();
 
-  if (username.length < 2) return regErr.textContent = "שם משתמש חייב להיות לפחות 2 תווים.";
-  if (password.length < 4) return regErr.textContent = "סיסמה חייבת להיות לפחות 4 תווים.";
-  if (password !== confirm) return regErr.textContent = "הסיסמאות לא תואמות.";
+  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d).{6,}$/;
+
+  if (!passwordRegex.test(password)) {
+      panelRegister.reset();
+
+      return regErr.textContent =
+        "הסיסמה חייבת להכיל לפחות 6 תווים, אות אחת וספרה אחת.";
+    }
+
+  if (username.length < 2) {
+      panelRegister.reset();
+      return regErr.textContent = "שם משתמש חייב להיות לפחות 2 תווים.";
+  }
+  if (password !== confirm) {
+      panelRegister.reset();
+      return regErr.textContent = "הסיסמאות לא תואמות.";
+  }
 
   const users = Storage.getUsers();
+
   if (users.some(u => u.username === username)) {
+    panelRegister.reset();
     return regErr.textContent = "שם המשתמש כבר קיים.";
   }
 
+  if (users.some(u => u.email === email)) {
+  return regErr.textContent = "האימייל כבר רשום במערכת.";
+}
+
   users.push({
     username,
-    password,         // בפרויקט הזה זה מספיק (אין שרת)
+    password, 
+    email,       
     createdAt: new Date().toISOString(),
     failedAttempts: 0,
     blockedUntil: null,
@@ -62,6 +84,7 @@ panelRegister.addEventListener("submit", (e) => {
   });
 
   Storage.saveUsers(users);
+
   regOk.textContent = "נרשמת בהצלחה! עכשיו אפשר להתחבר.";
   panelRegister.reset();
 
@@ -78,6 +101,7 @@ panelLogin.addEventListener("submit", (e) => {
   const password = document.getElementById("login-password").value;
 
   const users = Storage.getUsers();
+
   const user = users.find(u => u.username === username);
 
   if (!user) return loginErr.textContent = "משתמש לא קיים.";

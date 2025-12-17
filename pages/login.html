@@ -3,11 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PlayZone – התחברות / הרשמה</title>
+  <title>FunZone – התחברות / הרשמה</title>
   <link rel="stylesheet" href="../css/login.css" />
 </head>
 <body>
   <main class="login-wrap">
+    <img src="../img/logo.png" alt="FunZone logo" class="logo">
+
+
     <section class="login-card">
       <div class="tabs">
         <button id="tab-login" class="tab active">התחברות</button>
@@ -17,19 +20,22 @@
       <div class="card-body">
         <h1 class="title">FunZone</h1>
 
+
         <!-- LOGIN -->
         <form id="panel-login" class="panel">
           <label>
            שם משתמש
-            <input id="login-username" type="text" required>
+            <input id="login-username" type="text" placeholder="הכנס שם משתמש" required>
           </label>
 
           <label>
            סיסמה
-            <input id="login-password" type="password" required>
+            <input id="login-password" type="password" placeholder="הכנס סיסמה" required>
           </label>
 
-          <p id="login-error" class="msg error"></p>
+          <p id="login-error" class="msg error"></p>          
+          <p id="login-success" class="msg success"></p>
+
           <button type="submit">כניסה</button>
         </form>
 
@@ -37,20 +43,33 @@
         <form id="panel-register" class="panel hidden">
           <label>
            שם משתמש
-            <input id="reg-username" type="text" required>
+            <input id="reg-username" type="text" placeholder="הכנס שם משתמש" required>
+            <h2 class="hint">
+           *לפחות 2 תווים
+            </h2>
           </label>
 
           <label>
            סיסמה
-            <input id="reg-password" type="password" required>
+            <input id="reg-password" type="password" placeholder="הכנס סיסמה" required>
+            <h2 class="hint">
+           *לפחות 6 תווים, אות אחת ומספר אחד
+            </h2>
           </label>
 
           <label>
            אימות סיסמה
-            <input id="reg-confirm" type="password" required>
+            <input id="reg-confirm" type="password" placeholder="אמת סיסמה" required>
           </label>
 
+          <label>
+           אימייל
+            <input id="reg-email" type="email" placeholder="הכנס אימייל" required>
+          </label>
+
+
           <p id="reg-error" class="msg error"></p>
+          <p id="reg-success" class="msg success"></p>
           <button type="submit">הרשמה</button>
         </form>
       </div>
