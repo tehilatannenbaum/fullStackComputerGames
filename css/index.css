@@ -7,13 +7,13 @@
 
   --dark: #1a1a1a;
   --border: #e0e0e0;
+  --white-glass: rgba(255, 255, 255, 0.2);
+  --dark-glass: rgba(0, 0, 0, 0.1);
 }
 
 body{
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, var(--purple), var(--pink), var(--orange));
-  min-height: 100vh;
-  color: var(--dark);
+  background: linear-gradient(135deg, var(--orange), var(--pink), var(--purple));
 }
 
 .container {
@@ -21,38 +21,84 @@ body{
     gap: 20px;
 }
 
-.sidebar {
-    flex: 0 0 30%;
-    position: sticky;
-    top: 0;
-    background-color: var(--gold);
-    padding: 10px;
-    border-radius: 12px;
+
+.sidebar-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 25px;
+  width: 320px;
+  
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  
+  color: white;
 }
 
-.profile-section h2 { color: #e94560; }
-
-.score {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #4ecca3;
+.profile-card, .leaderboard-card {
+  background: var(--dark-glass);
+  border: 1px solid var(--white-glass);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
 }
 
-.activities, .leaderboard ol {
-    padding-right: 20px;
-    line-height: 1.8;
+h2, h3 {
+  color: var(--gold);
+  text-shadow: 0px 2px 4px rgba(0,0,0,0.3);
+  margin-top: 0;
 }
 
-.leaderboard li:first-child {
-    color: gold;
-    font-weight: bold;
+/* פס התקדמות בצבע ה-Teal שלך */
+.level-progress {
+  height: 12px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  margin: 15px 0;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal), var(--purple));
+  box-shadow: 0 0 10px var(--teal); /* אפקט זוהר */
+}
+
+/* רשימת פעילויות - שקופה למחצה */
+.activities-list li {
+  background: rgba(255, 255, 255, 0.1);
+  margin-bottom: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  border-right: 4px solid var(--pink); /* דגש בצבע ורוד */
+  display: flex;
+  justify-content: space-between;
+  transition: transform 0.2s;
+}
+
+.activities-list li:hover {
+  transform: scale(1.03);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.leader-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid var(--white-glass);
+}
+
+.leader-item.gold { 
+    color: var(--gold); 
+    font-weight: bold; 
 }
 
 .games-grid {
     flex: 3;
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-auto-rows: repeat(8, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: repeat(5, 1fr);
     gap: 15px;
 }
 
@@ -74,11 +120,19 @@ body{
 .game-info {
     position: absolute;
     bottom: 0;
-    background: var(--purple);
+    color: white;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); 
     width: 100%;
     padding: 10px;
     font-size: 0.9rem;
     text-align: center;
+    visibility: hidden;
+}
+
+.game-card:hover .game-info {
+    visibility: visible;
+    animation: moveUp 0.8s ease-out;
 }
 
 .game-card:hover {
@@ -86,6 +140,19 @@ body{
     z-index: 10;
     border-color: #E02F73;
 }
+
+@keyframes moveUp {
+    0% {
+        transform: translate(0%, 20%);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0%, 0%);
+        opacity: 0.9;
+    }
+}
+
+
 
 .w-1 {
     grid-column: span 1;
@@ -118,4 +185,23 @@ body{
     grid-row: span 5;
 }
 
+.logout-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
 
+.logout-button img {
+  height: 60px;
+  width: auto;
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+.logout-button img:hover  {
+  transform: scale(1.15);
+}

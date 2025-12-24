@@ -5,72 +5,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>דף הבית - עולם המשחקים</title>
     <link rel="stylesheet" href="../css/index.css">
+    <script src="../js/index.js" defer></script>
 </head>
 <body>
     <div class="container">
-        <aside class="sidebar">
-            <section class="profile-section">
-                <h2>הפרופיל שלי</h2>
-                <div class="user-stats">
-                    <p><strong>שם:</strong> ישראל ישראלי</p>
-                    <p><strong>ניקוד כולל:</strong> <span class="score">1,250</span></p>
+        <aside class="sidebar-right">
+            <section class="profile-card">
+                <div class="profile-header">
+                    <div class="avatar">👤</div>
+                    <div class="user-info">
+                        <h2 id="user-name">ישראל ישראלי</h2>
+                        <span class="user-rank">PRO GAMER</span>
+                    </div>
                 </div>
-                <h3>פעילויות אחרונות:</h3>
-                <ul class="activities">
-                    <li>סופר מריו - 50 נק'</li>
-                    <li>שחמט אונליין - 20 נק'</li>
-                </ul>
+            
+                <div class="user-stats">
+                    <div class="stat-item">
+                        <span class="label">ניקוד כולל</span>
+                        <span class="value" id="total-score">1,250</span>
+                    </div>
+                    <div class="level-progress">
+                        <div class="progress-bar" style="width: 65%;"></div>
+                    </div>
+                </div>
+            
+                <div class="recent-activities">
+                    <h3>🎮 פעילות אחרונה</h3>
+                    <ul id="activities-list" class="activities-list">
+                        <li>
+                            <span class="game-name">סופר מריו</span>
+                            <span class="game-points">+50pt</span>
+                        </li>
+                        <li>
+                            <span class="game-name">שחמט אונליין</span>
+                            <span class="game-points">+20pt</span>
+                        </li>
+                    </ul>
+                </div>
             </section>
-
-            <section class="leaderboard">
-                <h3>שלושת המובילים</h3>
-                <ol>
-                    <li>דנה כהן - 5,000 נק'</li>
-                    <li>אלון לוי - 4,200 נק'</li>
-                    <li>רוני ארד - 3,850 נק'</li>
-                </ol>
+        
+            <section class="leaderboard-card">
+                <h3>🏆 Top 3 Players</h3>
+                <div class="leaderboard-list">
+                    <div class="leader-item gold">
+                        <span class="rank">1</span>
+                        <span class="name">דנה כהן</span>
+                        <span class="pts">5,000</span>
+                    </div>
+                    <div class="leader-item silver">
+                        <span class="rank">2</span>
+                        <span class="name">אלון לוי</span>
+                        <span class="pts">4,200</span>
+                    </div>
+                    <div class="leader-item bronze">
+                        <span class="rank">3</span>
+                        <span class="name">רוני ארד</span>
+                        <span class="pts">3,850</span>
+                    </div>
+                </div>
             </section>
+            <button type="button" class="logout-button" onclick="window.location.href='../pages/login.html'">
+                <img src="../img/logo.png" alt="לוגו האתר">
+            </button>      
         </aside>
         <main class="games-grid" >
             <div class="game-card w-2 r-2">
-                <img src="/img/mario.jpeg" alt="משחק 1">
-                <div class="game-info">משחק הרפתקאות</div>
-            </div>
-            <div class="game-card w-3 r-2">
-                <img src="/img/hillClimb.jpeg" alt="משחק 2">
-                <div class="game-info">מרוץ מכוניות</div>
-            </div>
-            <div class="game-card w-2 r-2">
-                <img src="/img/fortnaite.jpeg" alt="משחק 3">
-                <div class="game-info">פאזל יומי</div>
-            </div>
-            <div class="game-card r-3 w-2">
-                <img src="/img/strategy.jpeg" alt="משחק 4">
-                <div class="game-info">קרב אסטרטגיה</div>
-            </div>
-            <div class="game-card w-1 r-1">
-                <img src="/img/fAndw.jpeg" alt="משחק 5">
-                <div class="game-info">משחק פעולה</div>
-            </div>
-            <div class="game-card w-2 r-2">
-                <img src="/img/mario.jpeg" alt="משחק 1">
-                <div class="game-info">משחק הרפתקאות</div>
+                <img src="/img/mario.jpeg" alt="mario game img ">
+                <div class="game-info">מריו</div>
             </div>
             <div class="game-card w-1 r-2">
-                <img src="/img/hillClimb.jpeg" alt="משחק 2">
-                <div class="game-info">מרוץ מכוניות</div>
+                <img src="/img/hillClimb.jpeg" alt="hillClimb game img">
+                <div class="game-info">טיפוס גבעות</div>
+            </div>
+            <div class="game-card w-1 r-1">
+                <img src="/img/fortnaite.jpeg" alt="fortnaite game img">
+                <div class="game-info">פורטנייט</div>
+            </div>
+            <div class="game-card w-1 r-1">
+                <img src="/img/fAndw.jpeg" alt="fAndw game img">
+                <div class="game-info">בת האש ובן המים</div>
+            </div>
+            <div class="game-card w-1 r-1">
+                <img src="/img/balls.jpeg" alt="balls game img">
+                <div class="game-info">כדורים</div>
+            </div>
+            <div class="game-card w-1 r-2">
+                <img src="/img/bubble.jpeg" alt="bubble game img">
+                <div class="game-info">בועות</div>
+            </div>
+            <div class="game-card w-1 r-1">
+                <img src="/img/JD.jpeg" alt="Jast Danse game img">
+                <div class="game-info">Jast Danse</div>
+            </div>
+            <div class="game-card r-2 w-1">
+                <img src="/img/soliter.jpeg" alt="soliter game img">
+                <div class="game-info">סוליטר</div>
             </div>
             <div class="game-card w-2 r-2">
-                <img src="/img/fortnaite.jpeg" alt="משחק 3">
-                <div class="game-info">פאזל יומי</div>
-            </div>
-            <div class="game-card r-3 w-2">
-                <img src="/img/strategy.jpeg" alt="משחק 4">
-                <div class="game-info">קרב אסטרטגיה</div>
-            </div>
-            <div class="game-card w-4 r-2">
-                <img src="/img/fAndw.jpeg" alt="משחק 5">
-                <div class="game-info">משחק פעולה</div>
+                <img src="/img/tribe.jpeg" alt="tribe game img">
+                <div class="game-info">משחק</div>
             </div>
         </main>
 
