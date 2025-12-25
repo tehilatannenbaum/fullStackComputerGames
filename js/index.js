@@ -7,13 +7,14 @@ localStorage.setItem("profileData", JSON.stringify({
     ]
 }));
 
+
 document.addEventListener("DOMContentLoaded", () => {
-    const data = JSON.parse(localStorage.getItem("profileData"));
+    const data = JSON.parse(localStorage.getItem("currentUser"));
 
     if (!data) return;
 
     document.querySelector(".user-stats p strong").parentElement.innerHTML =
-        `<strong>שם:</strong> ${data.name}`;
+        `<strong>שם:</strong> ${data}`;
 
     document.querySelector(".score").textContent = data.totalScore.toLocaleString();
 

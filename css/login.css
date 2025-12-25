@@ -1,28 +1,7 @@
-:root{
-  --gold: #F2C500;
-  --orange: #E8842E;
-  --pink: #E02F73;
-  --purple: #CFA8DA;
-  --teal: #76C2AE;
-
-  --dark: #1a1a1a;
-  --border: #e0e0e0;
-}
-
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body{
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, var(--purple), var(--pink), var(--orange));
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: var(--dark);
 }
 
 .login-card{

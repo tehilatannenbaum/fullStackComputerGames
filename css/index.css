@@ -1,21 +1,3 @@
-:root{
-  --gold: #F2C500;
-  --orange: #E8842E;
-  --pink: #E02F73;
-  --purple: #CFA8DA;
-  --teal: #76C2AE;
-
-  --dark: #1a1a1a;
-  --border: #e0e0e0;
-  --white-glass: rgba(255, 255, 255, 0.2);
-  --dark-glass: rgba(0, 0, 0, 0.1);
-}
-
-body{
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, var(--orange), var(--pink), var(--purple));
-}
-
 .container {
     display: flex;
     gap: 20px;

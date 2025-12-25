@@ -1,0 +1,56 @@
+.egg-section {
+    margin-bottom: 30px;
+    font-size: 80px;
+    transition: all 0.5s ease;
+}
+
+.egg {
+    display: inline-block;
+    transition: transform 0.2s;
+}
+
+/* אנימציית רעידה כשהביצה עומדת להישבר */
+.shaking {
+    animation: shake 0.5s infinite;
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    20% { transform: translate(-3px, 0px) rotate(-1deg); }
+    40% { transform: translate(3px, 2px) rotate(1deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+#progress-bar-container {
+    width: 200px;
+    height: 10px;
+    background: var(--dark-glass);
+    margin: 10px auto;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background: var(--pink);
+    transition: width 0.3s;
+}
+
+.options-grid {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.option-btn {
+    background: var(--white-glass);
+    border: 1px solid var(--border);
+    padding: 15px;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.option-btn:hover { background: var(--purple); }
+.hidden { display: none; }

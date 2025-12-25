@@ -134,5 +134,5 @@ panelLogin.addEventListener("submit", (e) => {
   loginOk.textContent = "התחברת בהצלחה!";
 
   // בהמשך: להפנות לעמוד האפליקציות שלכם
-  // window.location.href = "../index.html";
+  window.location.href = "../index.html";
 });
