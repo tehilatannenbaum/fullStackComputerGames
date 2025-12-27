@@ -61,3 +61,7 @@ body {
     background-color: var(--white-glass);
     transform: rotateY(180deg); /* הצד הקדמי מחכה הפוך */
 }
+.card-img {
+    object-fit: cover;
+    border-radius: 8px;
+}
