@@ -52,5 +52,66 @@
     border-radius: 8px;
 }
 
-.option-btn:hover { background: var(--purple); }
+.option-btn:hover { 
+    background: var(--purple);
+}
+
+.hidden { 
+    display: none; 
+}
+
+.egg-section {
+    font-size: 100px;
+    margin: 20px 0;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quiz-card {
+    background: var(--white-glass);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--border);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+.option-btn {
+    background: var(--dark-glass);
+    color: white;
+    border: 2px solid var(--teal);
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1.1rem;
+}
+.option-btn:hover {
+    background: var(--teal);
+    color: var(--dark);
+}
+#progress-bar-container {
+    width: 100%;
+    max-width: 300px;
+    height: 12px;
+    background: #444;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--orange), var(--pink));
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
 .hidden { display: none; }
