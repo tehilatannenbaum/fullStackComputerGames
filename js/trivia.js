@@ -12,6 +12,11 @@ let score = 0;
 const eggElement = document.getElementById('egg-img');
 const progressBar = document.getElementById('progress-bar');
 
+const restartBtn = document.querySelector('.restart-btn');
+restartBtn.addEventListener('click', () => {
+    location.reload();
+});
+
 function loadQuestion() {
     const qData = questions[currentQuestionIndex];
     document.getElementById('question').innerText = qData.q;
@@ -47,14 +52,28 @@ function updateEgg() {
 
     const stage = Math.min(score + 1, 6);//לייתר בטחון
     eggElement.src = `../img/crash_egg/egg_${stage}.png`;
+    eggElement.classList.add('crack-animation');
+        setTimeout(() => {
+            eggElement.classList.remove('crack-animation');
+        }, 500);
 }
 
 function showFinalSurprise() {
-    document.getElementById('quiz-card').classList.add('hidden');
-    document.getElementById('victory-screen').classList.remove('hidden');
-    eggElement.innerText = '🐉'; // ההפתעה שיצאה מהביצה
-    eggElement.classList.remove('shaking');
+    document.getElementsByClassName('game-area')[0].style.flex = '0 0 50%';
+    document.getElementById('quiz-card').style.display = 'none';
+    document.getElementById('final-screen').style.display = 'block';
+
+    if (score === questions.length) {
+        document.querySelector('.final-title').innerText = "הצלחת, הביצה בקעה!";
+        document.querySelector('.final-message').innerText = "הרווחת 100 נקודות נוספות";
+    } else if (score >= questions.length / 2) {
+        document.querySelector('.final-title').innerText = "היית קרוב!";
+        document.querySelector('.final-message').innerText = "הביצה כמעט בקעה - כדי להרוויח את כל הנקודות נסה שוב";
+    }
+    else {
+        document.querySelector('.final-title').innerText = "נסה שוב!";
+        document.querySelector('.final-message').innerText = "הביצה לא בקעה הפעם - לא להתייאש, שחק שוב";
+    }
 }
 
-// התחלת המשחק
 loadQuestion();
