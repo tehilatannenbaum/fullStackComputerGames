@@ -1,0 +1,44 @@
+body {
+    background-color: var(--dark);
+    color: white;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.game-container { 
+    text-align: center; width: 90%; 
+}
+
+header {
+    display: flex;
+    position: sticky;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+}
+
+.logout-button {
+    position: absolute;
+    right: 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem; 
+    /*לשנות פונט*/
+}
+
+.game-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--dark-glass);
+    border-radius: 15px;
+    border: 1px solid var(--border);
+    padding: 20px;
+    margin: 10px;
+}

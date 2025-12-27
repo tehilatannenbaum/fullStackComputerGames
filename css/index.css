@@ -166,24 +166,3 @@ h2, h3 {
 .r-5 {
     grid-row: span 5;
 }
-
-.logout-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-}
-
-.logout-button img {
-  height: 60px;
-  width: auto;
-  display: block;
-  transition: transform 0.25s ease;
-}
-
-.logout-button img:hover  {
-  transform: scale(1.15);
-}

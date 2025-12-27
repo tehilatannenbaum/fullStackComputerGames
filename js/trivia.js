@@ -2,13 +2,14 @@ const questions = [
     { q: "מהי בירת צרפת?", options: ["לונדון", "פריז", "רומא", "מדריד"], a: 1 },
     { q: "כמה זה 5 + 5?", options: ["10", "15", "20", "25"], a: 0 },
     { q: "איזו שפה משמשת לעיצוב אתרים?", options: ["HTML", "Python", "CSS", "Java"], a: 2 },
-    { q: "מי המציא את נורת החשמל?", options: ["איינשטיין", "אדיסון", "טסלה", "ניוטון"], a: 1 }
+    { q: "מי המציא את נורת החשמל?", options: ["איינשטיין", "אדיסון", "טסלה", "ניוטון"], a: 1 },
+    { q: "מי כתב את המחזה 'רומיאו ויוליה'?", options: ["שייקספיר", "מוצרט", "בטהובן", "דנטה"], a: 0 }
 ];
 
 let currentQuestionIndex = 0;
 let score = 0;
 
-const eggElement = document.getElementById('egg');
+const eggElement = document.getElementById('egg-img');
 const progressBar = document.getElementById('progress-bar');
 
 function loadQuestion() {
@@ -44,13 +45,8 @@ function updateEgg() {
     const progress = (score / questions.length) * 100;
     progressBar.style.width = `${progress}%`;
 
-    // שלבי התנפצות הביצה
-    if (progress > 25) eggElement.innerText = '🥚'; 
-    if (progress > 50) {
-        eggElement.innerText = '🐣';
-        eggElement.classList.add('shaking');
-    }
-    if (progress > 75) eggElement.innerText = '🐥';
+    const stage = Math.min(score + 1, 6);//לייתר בטחון
+    eggElement.src = `../img/crash_egg/egg_${stage}.png`;
 }
 
 function showFinalSurprise() {

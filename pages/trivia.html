@@ -5,30 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>טריוויה - ביצת ההפתעה</title>
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/game.css">
     <link rel="stylesheet" href="../css/trivia.css">
 </head>
 <body>
-
     <div class="game-container">
         <header>
             <h1>טריוויית הידע</h1>
-            <a href="index.html" style="color: var(--purple); text-decoration: none;">← חזרה לתפריט</a>
+            <button class="logout-button" onclick="window.location.href='../index.html'">
+                <img src="../img/logo.png" alt="לוגו האתר">
+            </button>         
         </header>
 
-        <div class="egg-section">
-            <div id="egg" class="egg">🥚</div>
-            <div id="progress-bar-container">
-                <div id="progress-bar"></div>
+        <section class="game-section">
+            <div class="egg-area">
+                <img id="egg-img" src="../img/crash_egg/egg_1.png" alt="Egg">
+                <div id="progress-bar-container">
+                    <div id="progress-bar"></div>
+                </div>
             </div>
-        </div>
 
-        <main id="game-area">
-            <div id="quiz-card" class="quiz-card">
-                <h2 id="question">טוען שאלה...</h2>
-                <div id="options" class="options-grid">
+            <div class="game-area">
+                <div id="quiz-card" class="quiz-card">
+                    <h2 id="question">טוען שאלה...</h2>
+                    <div id="options" class="options-grid">
                     </div>
+                </div>
             </div>
-        </main>
+        </section>
 
         <div id="victory-screen" class="hidden">
             <h2 style="color: var(--gold);">הצלחת!</h2>
