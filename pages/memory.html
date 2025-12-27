@@ -5,22 +5,43 @@
     <title>משחק הזיכרון - Fullstack Project</title>
     <link rel="stylesheet" href="../css/memory.css">
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/game.css">
 </head>
 <body>
 
     <div class="game-container">
-        <h1>משחק הזיכרון</h1>
+        <header>
+            <h1>משחק הזיכרון</h1>
+            <button class="logout-button" onclick="window.location.href='../index.html'">
+                <img src="../img/logo.png" alt="לוגו האתר">
+            </button>
+        </header>
         
-        <div class="controls">
-            <button onclick="startGame(1)">רמה 1</button>
-            <button onclick="startGame(2)">רמה 2</button>
-            <button onclick="startGame(3)">רמה 3</button>
-            <button onclick="startGame(4)">רמה 4</button>
-        </div>
+        <section class="game-section">
+            <div class="controls">
+                <button class="level-btn" onclick="startGame(1)">רמה 1</button>
+                <button class="level-btn" onclick="startGame(2)">רמה 2</button>
+                <button class="level-btn" onclick="startGame(3)">רמה 3</button>
+                <button class="level-btn" onclick="startGame(4)">רמה 4</button>
+            </div>
+            
+            <div id="game-board" class="grid"></div>
 
-        <div id="game-board" class="grid"></div>
+            <div id="game-finish-modal" class="modal hidden">
+                <div class="modal-content">
+                    <h2>🎉 כל הכבוד!</h2>
+                    <p id="finish-message"></p>
+                    <button onclick="closeFinishModal()">המשך</button>
+                </div>
+            </div>
+        </section>
     </div>
 
+    
+
+
+    <script src="../js/storage.js"></script>
     <script src="../js/memory.js"></script>
+
 </body>
 </html>
