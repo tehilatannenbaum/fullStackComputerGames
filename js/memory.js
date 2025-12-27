@@ -21,7 +21,20 @@ const levels = {
     4: 16, // 16 קלפים (8 זוגות)
 };
 
+function setActiveLevel(level) {
+  const buttons = document.querySelectorAll(".level-btn");
+
+  buttons.forEach(btn => btn.classList.remove("active"));
+
+  // רמה 1 = כפתור ראשון, רמה 2 = שני, וכו'
+  buttons[level - 1].classList.add("active");
+}
+
+
+
 function startGame(level) {
+
+    setActiveLevel(level);
 
     currentLevel = level;
     matchedPairs = 0;
@@ -64,6 +77,10 @@ function startGame(level) {
         board.appendChild(card);
     });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  startGame(1);
+});
 
 function createCard(icon) {
     const card = document.createElement('div');
