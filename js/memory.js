@@ -2,6 +2,17 @@ const board = document.getElementById('game-board');
 let flippedCards = [];
 let lockBoard = false;
 
+const levelPoints = {
+  1: 100,
+  2: 200,
+  3: 300,
+  4: 400
+};
+
+let currentLevel = 1;
+let matchedPairs = 0;
+
+
 // הגדרת כמות קלפים לכל רמה (זוגות)
 const levels = {
     1: 4,  // 4 קלפים (2 זוגות)
@@ -10,7 +21,24 @@ const levels = {
     4: 16, // 16 קלפים (8 זוגות)
 };
 
+function setActiveLevel(level) {
+  const buttons = document.querySelectorAll(".level-btn");
+
+  buttons.forEach(btn => btn.classList.remove("active"));
+
+  // רמה 1 = כפתור ראשון, רמה 2 = שני, וכו'
+  buttons[level - 1].classList.add("active");
+}
+
+
+
 function startGame(level) {
+
+    setActiveLevel(level);
+
+    currentLevel = level;
+    matchedPairs = 0;
+    lockBoard = false;
     board.innerHTML = ''; // ניקוי הלוח
     flippedCards = [];
     const numberOfCards = levels[level];
@@ -50,6 +78,10 @@ function startGame(level) {
     });
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  startGame(1);
+});
+
 function createCard(icon) {
     const card = document.createElement('div');
     card.classList.add('card');
@@ -58,7 +90,9 @@ function createCard(icon) {
 
     card.innerHTML = `
         <div class="card-inner">
-            <div class="card-back">?</div>
+            <div class="card-back">
+                <img class="card-img" src="../img/memory_cards/front.png" alt="memory card back">
+            </div>
             <div class="card-front">
                 <img class="card-img" src="${icon}" alt="memory card"></div>
         </div>
@@ -82,10 +116,15 @@ function checkMatch() {
     lockBoard = true;
     const [card1, card2] = flippedCards;
     const isMatch = card1.dataset.cardId === card2.dataset.cardId;
-    //const isMatch = card1.querySelector('.card-front').innerText === card2.querySelector('.card-front').innerText;
 
     if (isMatch) {
+        matchedPairs++;
+        const totalPairs = levels[currentLevel] / 2; //number of pairs in current level
         resetBoard();
+
+        if(matchedPairs === totalPairs) {
+            finishGame(); // סיום משחק
+        }
     } else {
         setTimeout(() => {
             card1.classList.remove('flipped');
@@ -99,3 +138,28 @@ function resetBoard() {
     flippedCards = [];
     lockBoard = false;
 }
+
+function finishGame() {
+  const username = Storage.getCurrentUser();
+  if (!username) return;
+
+  const points = levelPoints[currentLevel] || 0;
+  const total = Storage.addScore(username, points);
+
+  const msg = `
+    ${username},
+    סיימת רמה ${currentLevel} 🎮
+
+    קיבלת ${points} נקודות ⭐
+    סה״כ נקודות: ${total}
+    `;
+
+  document.getElementById("finish-message").textContent = msg;
+  document.getElementById("game-finish-modal").classList.remove("hidden");
+}
+
+function closeFinishModal() {
+  document.getElementById("game-finish-modal").classList.add("hidden");
+}
+
+
