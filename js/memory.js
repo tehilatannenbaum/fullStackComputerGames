@@ -143,7 +143,7 @@ function finishGame() {
   if (!username) return;
 
   const points = levelPoints[currentLevel] || 0;
-  const total = Storage.addScore(username, points);
+  const total = Storage.addScore(username, points, "Memory Match");
 
   const msg = `
     ${username},

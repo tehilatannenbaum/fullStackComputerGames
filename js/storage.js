@@ -15,21 +15,38 @@ const Storage = {
   setCurrentUser(username) {
     localStorage.setItem("currentUser", username);
   },
+
+  getCurrentUser() {
+    return localStorage.getItem("currentUser");
+  },
   
-  addScore(username, points) {
+  addScore(username, points, gameName = "") {
     const users = this.getUsers();
     const user = users.find(u => u.username === username);
     if (!user) return null;
 
     user.score = (user.score || 0) + points;
+    
+    if (gameName) {
+      if (!user.activities) user.activities = [];
+
+      const activity = user.activities.find(a => a.title === gameName);
+
+      if (activity) {
+          activity.points += points;
+      } else {
+          user.activities.push({ title: gameName, points });
+      }
+    }
+    
     this.saveUsers(users);
+
+    const event = new CustomEvent('dataUpdated');
+    window.dispatchEvent(event);
+
     return user.score;
   },
   
-  getCurrentUser() {
-    return localStorage.getItem("currentUser");
-  },
-
   findBestPlayers(topN = 3) {
     const users = this.getUsers();
     return users
