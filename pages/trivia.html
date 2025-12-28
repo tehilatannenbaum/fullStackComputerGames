@@ -22,6 +22,7 @@
         <section class="game-section">
             <div class="egg-area">
                 <img id="egg-img" src="../img/crash_egg/egg_1.png" alt="Egg">
+                <div class="shadow"></div>
                 <div id="progress-bar-container">
                     <div id="progress-bar"></div>
                 </div>
@@ -33,11 +34,13 @@
                     <div id="options" class="options-grid">
                     </div>
                 </div>
+            </div>
 
-                <div id="final-screen">
-                    <h2 class="final-title"></h2>
-                    <p class="final-message"></p>
-                    <button class="option-btn restart-btn">להתחיל שוב!</button>
+            <div id="game-finish-modal" class="modal hidden">
+                <div class="modal-content">
+                    <h2>🎉 כל הכבוד!</h2>
+                    <p id="finish-message"></p>
+                    <button onclick="closeFinishModal()">שחק שוב</button>
                 </div>
             </div>
 

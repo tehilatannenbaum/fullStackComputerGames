@@ -21,7 +21,6 @@ const allQuestions = [
   { q: "מהו החומר הקשה ביותר בטבע?", options: ["ברזל", "זהב", "יהלום", "כסף"], a: "יהלום" }
 ];
 
-
 let gameQuestions = []; // the questions for the current game session
 let currentQuestionIndex = 0;
 let score = 0;
@@ -29,13 +28,12 @@ let score = 0;
 const eggElement = document.getElementById('egg-img');
 const progressBar = document.getElementById('progress-bar');
 
-const restartBtn = document.querySelector('.restart-btn');
-restartBtn.addEventListener('click', () => {
-    location.reload();
-});
-
 /** Prepare the game by selecting a six random subset of questions */
 function prepareGame() {
+    currentQuestionIndex = 0;
+    score = 0;
+    eggElement.src = '../img/crash_egg/egg_1.png';
+    progressBar.style.width = '0%';
     gameQuestions = [...allQuestions]
         .sort(() => Math.random() - 0.5)
         .slice(0, 5);
@@ -70,7 +68,7 @@ function checkAnswer(selectedOption, correctAnswer) {
     if (currentQuestionIndex < gameQuestions.length) {
         loadQuestion();
     } else {
-        showFinalSurprise();
+        finishGame();
     }
 }
 
@@ -86,26 +84,41 @@ function updateEgg() {
         }, 500);
 }
 
-function showFinalSurprise() {
-    document.getElementsByClassName('game-area')[0].style.flex = '0 0 50%';
-    document.getElementById('quiz-card').style.display = 'none';
-    document.getElementById('final-screen').style.display = 'block';
+function finishGame() {
+  const username = Storage.getCurrentUser();
+  if (!username) return;
 
-    if (score === gameQuestions.length) {
-        const username = Storage.getCurrentUser();
-        if (!username) return;
+  let points = 0;
+  let statusMsg = "";
 
-        const total = Storage.addScore(username, 100);
-        document.querySelector('.final-title').innerText = `כל הכבוד ${username} הצלחת, הביצה בקעה!`;
-        document.querySelector('.final-message').innerText = "הרווחת 100 נקודות נוספות" + ", סה״כ נקודות: " + total;
-    } else if (score >= gameQuestions.length / 2) {
-        document.querySelector('.final-title').innerText = "היית קרוב!";
-        document.querySelector('.final-message').innerText = "הביצה כמעט בקעה - כדי להרוויח את כל הנקודות נסה שוב";
-    }
-    else {
-        document.querySelector('.final-title').innerText = "נסה שוב!";
-        document.querySelector('.final-message').innerText = "הביצה לא בקעה הפעם - לא להתייאש, שחק שוב";
-    }
+  if (score === gameQuestions.length) {
+    points = 100;
+    statusMsg = "כל הכבוד! הצלחת! הביצה בקעה";
+  } else if (score >= gameQuestions.length / 2) {
+    points = 50;
+    statusMsg = "היית קרוב/ה... אך הביצה לא בקעה ";
+  } else {
+    points = 10;
+    statusMsg = "אוי לא, הביצה לא בקעה. נסה/י שוב!";
+  }
+
+  const total = Storage.addScore(username, points);
+  const msg = `
+    ${username},
+    ${statusMsg}
+
+    קיבלת ${points} נקודות ⭐
+    סה״כ נקודות: ${total}
+    `;
+
+  document.getElementById("finish-message").textContent = msg;
+  document.getElementById("game-finish-modal").classList.remove("hidden");
+}
+
+function closeFinishModal() {
+  document.getElementById("game-finish-modal").classList.add("hidden");
+  prepareGame();
+  loadQuestion();
 }
 
 prepareGame();
