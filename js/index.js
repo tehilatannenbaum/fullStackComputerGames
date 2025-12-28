@@ -1,22 +1,11 @@
-localStorage.setItem("profileData", JSON.stringify({
-    name: "ישראל ",
-    totalScore: 1250,
-    activities: [
-        { title: "סופר מריו", points: 50 },
-        { title: "שחמט אונליין", points: 20 }
-    ]
-}));
-
-
 document.addEventListener("DOMContentLoaded", () => {
-    const data = JSON.parse(localStorage.getItem("currentUser"));
+    const data = Storage.findUser(Storage.getCurrentUser());
 
     if (!data) return;
 
-    document.querySelector(".user-stats p strong").parentElement.innerHTML =
-        `<strong>שם:</strong> ${data}`;
+    document.getElementById("user-name").textContent = data.username;
 
-    document.querySelector(".score").textContent = data.totalScore.toLocaleString();
+    document.getElementById("score").textContent = data.score.toLocaleString();
 
     const activitiesList = document.querySelector(".activities");
     activitiesList.innerHTML = "";
@@ -26,4 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
         li.textContent = `${activity.title} - ${activity.points} נק'`;
         activitiesList.appendChild(li);
     });
+
+    const bestPlayers = Storage.findBestPlayers(3);
+    const leaderboardList = document.querySelector(".leaderboard-list");
+    leaderboardList.innerHTML = "";
 });
+
+

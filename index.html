@@ -6,6 +6,7 @@
     <title>דף הבית - עולם המשחקים</title>
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/main.css">
+    <script src="../js/storage.js" defer></script>
     <script src="../js/index.js" defer></script>
 </head>
 <body>
@@ -15,7 +16,7 @@
                 <div class="profile-header">
                     <div class="avatar">👤</div>
                     <div class="user-info">
-                        <h2 id="user-name">ישראל ישראלי</h2>
+                        <h2 id="user-name"></h2>
                         <span class="user-rank">PRO GAMER</span>
                     </div>
                 </div>
@@ -23,7 +24,7 @@
                 <div class="user-stats">
                     <div class="stat-item">
                         <span class="label">ניקוד כולל</span>
-                        <span class="value" id="total-score">1,250</span>
+                        <span class="value" id="score">1,250</span>
                     </div>
                     <div class="level-progress">
                         <div class="progress-bar" style="width: 65%;"></div>
@@ -34,11 +35,11 @@
                     <h3>🎮 פעילות אחרונה</h3>
                     <ul id="activities-list" class="activities-list">
                         <li>
-                            <span class="game-name">סופר מריו</span>
+                            <span class="game-name">משחק הזיכרון</span>
                             <span class="game-points">+50pt</span>
                         </li>
                         <li>
-                            <span class="game-name">שחמט אונליין</span>
+                            <span class="game-name">משחק טריוויה</span>
                             <span class="game-points">+20pt</span>
                         </li>
                     </ul>
@@ -70,59 +71,59 @@
             </button>      
         </aside>
         <main class="games-grid" >
-            <div class="game-card w-2 r-2">
-                <img src="/img/mario.jpeg" alt="mario game img ">
-                <div class="game-info">מריו</div>
-            </div>
-            <div class="game-card w-1 r-2">
-                <img src="/img/hillClimb.jpeg" alt="hillClimb game img">
-                <div class="game-info">טיפוס גבעות</div>
-            </div>
-            <div class="game-card w-1 r-1">
-                <img src="/img/fortnaite.jpeg" alt="fortnaite game img">
-                <div class="game-info">פורטנייט</div>
-            </div>
-            <div class="game-card w-1 r-1">
-                <img src="/img/fAndw.jpeg" alt="fAndw game img">
-                <div class="game-info">בת האש ובן המים</div>
-            </div>
-            <div class="game-card w-1 r-1">
-                <img src="/img/balls.jpeg" alt="balls game img">
-                <div class="game-info">כדורים</div>
-            </div>
-            <div class="game-card w-1 r-2">
-                <img src="/img/bubble.jpeg" alt="bubble game img">
-                <div class="game-info">בועות</div>
-            </div>
-            <div class="game-card w-1 r-1">
-                <img src="/img/JD.jpeg" alt="Jast Danse game img">
-                <div class="game-info">Jast Danse</div>
-            </div>
-            <div class="game-card r-2 w-1">
-                <img src="/img/soliter.jpeg" alt="soliter game img">
-                <div class="game-info">סוליטר</div>
-            </div>
-            <div class="game-card w-2 r-2">
-                <img src="/img/tribe.jpeg" alt="tribe game img">
-                <div class="game-info">משחק</div>
-            </div>
-            <a href="../pages/memory.html" class="game-link">
-                <div class="game-card w-1 r-1">
-                    <img src="../img/memory.jpg" alt="משחק הזיכרון">
+            <a class="game-link game-card w-2 r-2" href="../pages/memory.html">
+                <div>
+                    <img src="../img/games/memory_1.jpg" alt="משחק הזיכרון">
                     <div class="game-info">משחק הזיכרון</div>
                 </div>
             </a>
-            <a href="../pages/trivia.html" class="game-link">
-                <div class="game-card w-1 r-1">
-                    <img src="../img/crack-the-egg.jpg" alt="משחק טריוויה">
+            <a class="game-link game-card w-2 r-1" href="../pages/trivia.html">
+                <div>
+                    <img src="../img/games/crack-the-egg.jpg" alt="משחק טריוויה">
                     <div class="game-info">משחק טריוויה</div>
                 </div>
             </a>
-
-        </main>
-
-        
+            <div class="game-card w-1 r-2">
+                <img src="../img/games/subway-surfers.jpeg" alt="subway surfers game img ">
+                <div class="game-info">משחק הרכבות</div>
+            </div>
+            <div class="game-card w-2 r-2">
+                <img src="../img/games/mario.jpeg" alt="mario game img ">
+                <div class="game-info">מריו</div>
+            </div>
+            <div class="game-card w-1 r-2">
+                <img src="../img/games/hillClimb.jpeg" alt="hillClimb game img">
+                <div class="game-info">טיפוס גבעות</div>
+            </div>
+            <div class="game-card w-1 r-1">
+                <img src="../img/games/fortnaite.jpeg" alt="fortnaite game img">
+                <div class="game-info">פורטנייט</div>
+            </div>
+            <div class="game-card w-1 r-1">
+                <img src="../img/games/fAndw.jpeg" alt="fAndw game img">
+                <div class="game-info">בת האש ובן המים</div>
+            </div>
+            <div class="game-card w-1 r-1">
+                <img src="../img/games/balls.jpeg" alt="balls game img">
+                <div class="game-info">כדורים</div>
+            </div>
+            <div class="game-card w-2 r-2">
+                <img src="../img/games/bubble.jpeg" alt="bubble game img">
+                <div class="game-info">בועות</div>
+            </div>
+            <div class="game-card w-1 r-1">
+                <img src="../img/games/JD.jpeg" alt="Jast Danse game img">
+                <div class="game-info">Jast Danse</div>
+            </div>
+            <div class="game-card w-2 r-2">
+                <img src="../img/games/tribe.jpeg" alt="tribe game img">
+                <div class="game-info">Tribes</div>
+            </div>
+            <div class="game-card r-1 w-1">
+                <img src="../img/games/soliter.jpeg" alt="soliter game img">
+                <div class="game-info">סוליטר</div>
+            </div>
+        </main>        
     </div>
-
 </body>
 </html>

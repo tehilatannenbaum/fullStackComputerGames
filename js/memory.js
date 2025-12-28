@@ -31,7 +31,6 @@ function setActiveLevel(level) {
 }
 
 
-
 function startGame(level) {
 
     setActiveLevel(level);
