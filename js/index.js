@@ -21,32 +21,6 @@ function updateUI() {
     renderLeaderboard();
 }
 
-function devGames() {
-    const tooltip = document.createElement("div");
-    tooltip.className = "dev-tooltip";
-    tooltip.textContent = "המשחק בפיתוח... 🛠️";
-    document.body.appendChild(tooltip);
-
-    const devGames = document.querySelectorAll(".game-card.in-development");
-
-    devGames.forEach(game => {
-        // ביטול לחיצה אם זה בטעות תגית <a>
-        game.addEventListener("click", (e) => e.preventDefault());
-
-        // הצגת ההודעה ומעקב אחרי העכבר
-        game.addEventListener("mousemove", (e) => {
-            tooltip.style.display = "block";
-            tooltip.style.left = e.pageX + 15 + "px"; // 15px רווח מהעכבר
-            tooltip.style.top = e.pageY + 15 + "px";
-        });
-
-        // הסתרת ההודעה כשיוצאים מהכרטיס
-        game.addEventListener("mouseleave", () => {
-            tooltip.style.display = "none";
-        });
-    });
-}
-
 function renderRecentActivities(activities) {
     const activitiesList = document.getElementById("activities-list");
     activitiesList.innerHTML = "";
@@ -91,3 +65,27 @@ function renderLeaderboard() {
     });
 }
 
+function devGames() {
+    const tooltip = document.createElement("div");
+    tooltip.className = "dev-tooltip";
+    tooltip.textContent = "המשחק בפיתוח... 🛠️";
+    document.body.appendChild(tooltip);
+
+    const devGames = document.querySelectorAll(".game-card.in-development");
+
+    devGames.forEach(game => {
+        // ביטול לחיצה אם זה בטעות תגית <a>
+        game.addEventListener("click", (e) => e.preventDefault());
+
+        // הצגת ההודעה ומעקב אחרי העכבר
+        game.addEventListener("mousemove", (e) => {
+            tooltip.style.display = "block";
+            tooltip.style.left = e.pageX + 15 + "px"; // 15px רווח מהעכבר
+            tooltip.style.top = e.pageY + 15 + "px";
+        });
+
+        game.addEventListener("mouseleave", () => {
+            tooltip.style.display = "none";
+        });
+    });
+}

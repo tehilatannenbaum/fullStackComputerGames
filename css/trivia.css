@@ -21,6 +21,9 @@
     margin-top: -20px;
     filter: blur(8px);
 }
+.shadow-animation {
+    animation: shadowEffect 0.5s ease-in-out;
+}
 @keyframes shadowEffect {
     0% { transform: scaleX(1); opacity: 0.6; }
     25% { transform: scaleX(1.2); opacity: 0.4; }
@@ -28,14 +31,9 @@
     100% { transform: scaleX(1); opacity: 0.6; }
 }
 
-.shadow-animation {
-    animation: shadowEffect 0.5s ease-in-out;
-}
-
 .crack-animation {
     animation: crackEffect 0.5s ease-in-out;
 }
-
 @keyframes crackEffect {
     0% { transform: scale(1); }
     25% { transform: scale(1.1) rotate(5deg); }
@@ -62,6 +60,20 @@
     transition: width 0.5s ease;
 }
 
+.game-area {
+    flex: 0 0 80%;
+}
+
+.quiz-card {
+    background: var(--white-glass);
+    padding: 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--border);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
 .options-grid {
     display: flex;
     flex-direction: column;
@@ -79,29 +91,11 @@
     transition: all 0.3s;
     font-size: 1.1rem;
 }
-
 .option-btn:hover {
     background: var(--teal);
     color: var(--dark);
 }
 
-.game-area {
-    flex: 0 0 80%;
-}
-.quiz-card {
-    background: var(--white-glass);
-    padding: 20px;
-    border-radius: 15px;
-    backdrop-filter: blur(5px);
-    border: 1px solid var(--border);
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-.restart-btn {
-    float: left;
-    margin-top: 70px;
-}
 .finish-icon {
   width: 60px;
   display: block;
