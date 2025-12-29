@@ -12,9 +12,9 @@ body {
 .game-container { text-align: center; width: 90%; }
 
 .game-section {
-    flex-direction: column;   /* ⭐ זה העיקר */
+    flex-direction: column;   
     justify-content: flex-start;
-    gap: 10px;                /* רווח יפה בין הרמות ללוח */
+    gap: 10px;         
 }
 
 
@@ -31,6 +31,17 @@ body {
     height: 140px;
     perspective: 1000px; /* נותן עומק לאנימציה */
     cursor: pointer;
+
+    /* מצב התחלתי של הקלף לפני האנימציה */
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+}
+
+/* המחלקה שמוסיפה את הכניסה */
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .card-inner {
@@ -56,22 +67,49 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
     border: 2px solid var(--border);
 }
 
-.card-back {
-    background-color: var(--purple); /* גב הקלף */
-}
 
 .card-front {
-    background-color: var(--white-glass);
     transform: rotateY(180deg); /* הצד הקדמי מחכה הפוך */
 }
 .card-img {
     object-fit: cover;
     border-radius: 8px;
 }
+
+/* הגדרת תנועת הניעור */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+/* המחלקה שמרעידה את הקלף */
+.shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+/* אנימציה ליציאת הקלפים */
+.card.matched-fly-away {
+    pointer-events: none; /* שלא יהיה ניתן ללחוץ עליהם */
+    animation: flyAway 0.8s ease-in-out forwards;
+}
+
+@keyframes flyAway {
+    0% {
+        transform: scale(1) rotate(0deg) translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0) rotate(720deg) translateY(-200px);
+        opacity: 0;
+    }
+}
+
 
 .level-btn {
     background: var(--dark-glass);
@@ -89,3 +127,4 @@ body {
     background: var(--teal);
     color: var(--dark);
 }
+

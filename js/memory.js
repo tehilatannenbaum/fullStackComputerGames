@@ -15,10 +15,10 @@ let matchedPairs = 0;
 
 // הגדרת כמות קלפים לכל רמה (זוגות)
 const levels = {
-    1: 4,  // 4 קלפים (2 זוגות)
-    2: 6,  // 6 קלפים (3 זוגות)
-    3: 12,  // 12 קלפים (6 זוגות)
-    4: 16, // 16 קלפים (8 זוגות)
+    1: 4,
+    2: 6,  
+    3: 12,  
+    4: 16, 
 };
 
 function setActiveLevel(level) {
@@ -71,10 +71,18 @@ function startGame(level) {
     // הגדרת הגריד ב-CSS בצורה דינמית
     board.style.gridTemplateColumns = `repeat(${Math.ceil(Math.sqrt(numberOfCards))}, 100px)`;
 
-    gameIcons.forEach(icon => {
+    gameIcons.forEach((icon, index) => {
         const card = createCard(icon);
         board.appendChild(card);
+
+        // האנימציה מופעלת לכל קלף בנפרד עם דיליי
+        setTimeout(() => {
+            card.classList.add('show');
+        }, index * 100);
     });
+
+    
+    
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -116,18 +124,27 @@ function checkMatch() {
     const [card1, card2] = flippedCards;
     const isMatch = card1.dataset.cardId === card2.dataset.cardId;
 
+
     if (isMatch) {
         matchedPairs++;
-        const totalPairs = levels[currentLevel] / 2; //number of pairs in current level
+        
+        // הוספת אנימציית "תעופה"
+            card1.classList.add('matched-fly-away');
+            card2.classList.add('matched-fly-away');
+
+        const totalPairs = levels[currentLevel] / 2;
         resetBoard();
 
         if(matchedPairs === totalPairs) {
-            finishGame(); // סיום משחק
+            setTimeout(finishGame, 1000); // מחכים שהאנימציה תסתיים
         }
     } else {
+            card1.classList.add('shake');
+            card2.classList.add('shake');
+
         setTimeout(() => {
-            card1.classList.remove('flipped');
-            card2.classList.remove('flipped');
+            card1.classList.remove('flipped', 'shake');
+            card2.classList.remove('flipped', 'shake');
             resetBoard();
         }, 1000);
     }
