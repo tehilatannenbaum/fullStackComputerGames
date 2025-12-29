@@ -21,6 +21,16 @@
     margin-top: -20px;
     filter: blur(8px);
 }
+@keyframes shadowEffect {
+    0% { transform: scaleX(1); opacity: 0.6; }
+    25% { transform: scaleX(1.2); opacity: 0.4; }
+    50% { transform: scaleX(1.2); opacity: 0.4; }
+    100% { transform: scaleX(1); opacity: 0.6; }
+}
+
+.shadow-animation {
+    animation: shadowEffect 0.5s ease-in-out;
+}
 
 .crack-animation {
     animation: crackEffect 0.5s ease-in-out;
@@ -91,4 +101,9 @@
 .restart-btn {
     float: left;
     margin-top: 70px;
+}
+.finish-icon {
+  width: 60px;
+  display: block;
+  margin: 0 auto 10px;
 }

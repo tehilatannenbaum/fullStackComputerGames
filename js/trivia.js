@@ -27,6 +27,7 @@ let score = 0;
 
 const eggElement = document.getElementById('egg-img');
 const progressBar = document.getElementById('progress-bar');
+const shadowElement = document.querySelector('.shadow');
 
 /** Prepare the game by selecting a six random subset of questions */
 function prepareGame() {
@@ -82,6 +83,10 @@ function updateEgg() {
         setTimeout(() => {
             eggElement.classList.remove('crack-animation');
         }, 500);
+    shadowElement.classList.add('shadow-animation');
+        setTimeout(() => {
+            shadowElement.classList.remove('shadow-animation');
+        }, 500);
 }
 
 function finishGame() {
@@ -93,7 +98,7 @@ function finishGame() {
 
   if (score === gameQuestions.length) {
     points = 100;
-    statusMsg = "כל הכבוד! הצלחת! הביצה בקעה";
+    statusMsg = "כל הכבוד, הצלחת! הביצה בקעה";
   } else if (score >= gameQuestions.length / 2) {
     points = 50;
     statusMsg = "היית קרוב/ה... אך הביצה לא בקעה ";
@@ -103,15 +108,14 @@ function finishGame() {
   }
 
   const total = Storage.addScore(username, points, "Crack the Egg");
-  const msg = `
-    ${username},
-    ${statusMsg}
+  const msg = `<img src="../img/crash_egg/egg_${score + 1}.png" alt="trophy" class="finish-icon">
+  <strong>${username}</strong><br>
+  ${statusMsg}<br><br>
+  קיבלת ${points} נקודות ⭐<br>
+  סה״כ נקודות: ${total}
+`;
 
-    קיבלת ${points} נקודות ⭐
-    סה״כ נקודות: ${total}
-    `;
-
-  document.getElementById("finish-message").textContent = msg;
+  document.getElementById("finish-message").innerHTML = msg;
   document.getElementById("game-finish-modal").classList.remove("hidden");
 }
 
