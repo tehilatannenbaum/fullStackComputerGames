@@ -102,7 +102,7 @@ function finishGame() {
     statusMsg = "אוי לא, הביצה לא בקעה. נסה/י שוב!";
   }
 
-  const total = Storage.addScore(username, points, "Crash the Egg");
+  const total = Storage.addScore(username, points, "Crack the Egg");
   const msg = `
     ${username},
     ${statusMsg}
