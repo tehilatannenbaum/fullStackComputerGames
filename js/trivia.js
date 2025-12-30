@@ -29,6 +29,11 @@ const eggElement = document.getElementById('egg-img');
 const progressBar = document.getElementById('progress-bar');
 const shadowElement = document.querySelector('.shadow');
 
+document.addEventListener("DOMContentLoaded", () => {
+  prepareGame();
+  loadQuestion();
+});
+
 /** Prepare the game by selecting a six random subset of questions */
 function prepareGame() {
     currentQuestionIndex = 0;
@@ -77,7 +82,7 @@ function updateEgg() {
     const progress = (score / gameQuestions.length) * 100;
     progressBar.style.width = `${progress}%`;
 
-    const stage = Math.min(score + 1, 6);//לייתר בטחון
+    const stage = Math.min(score + 1, 6);
     eggElement.src = `../img/crash_egg/egg_${stage}.png`;
     eggElement.classList.add('crack-animation');
         setTimeout(() => {
@@ -124,6 +129,3 @@ function closeFinishModal() {
   prepareGame();
   loadQuestion();
 }
-
-prepareGame();
-loadQuestion();
