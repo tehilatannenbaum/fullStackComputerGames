@@ -133,6 +133,5 @@ panelLogin.addEventListener("submit", (e) => {
   Storage.setCurrentUser(username);
   loginOk.textContent = "התחברת בהצלחה!";
 
-  // בהמשך: להפנות לעמוד האפליקציות שלכם
   window.location.href = "../index.html";
 });

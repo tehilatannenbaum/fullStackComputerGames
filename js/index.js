@@ -25,7 +25,7 @@ function renderRecentActivities(activities) {
     const activitiesList = document.getElementById("activities-list");
     activitiesList.innerHTML = "";
 
-    const lastTwo = activities.slice(-2).reverse();
+    const lastTwo = activities.slice(0, 2);
 
     if (lastTwo.length === 0) {
         activitiesList.innerHTML = "<li>אין פעילות עדיין</li>";

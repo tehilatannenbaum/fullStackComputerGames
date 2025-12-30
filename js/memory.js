@@ -21,15 +21,18 @@ const levels = {
     4: 16, 
 };
 
+
 function setActiveLevel(level) {
   const buttons = document.querySelectorAll(".level-btn");
 
   buttons.forEach(btn => btn.classList.remove("active"));
 
-  // רמה 1 = כפתור ראשון, רמה 2 = שני, וכו'
   buttons[level - 1].classList.add("active");
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  startGame(1);
+});
 
 function startGame(level) {
 
@@ -42,7 +45,6 @@ function startGame(level) {
     flippedCards = [];
     const numberOfCards = levels[level];
     
-    // יצירת מערך סמלים (כפול 2 לכל סמל)
     const icons = [
     '../img/memory_cards/1.png',
     '../img/memory_cards/2.png',
@@ -63,19 +65,17 @@ function startGame(level) {
     ];
 
     let gameIcons = icons.slice(0, numberOfCards / 2);
-    gameIcons = [...gameIcons, ...gameIcons]; // הכפלה לזוגות
+    gameIcons = [...gameIcons, ...gameIcons];
     
-    // ערבוב קלפים
     gameIcons.sort(() => Math.random() - 0.5);
 
-    // הגדרת הגריד ב-CSS בצורה דינמית
+    // הגדרת גריד דינמית
     board.style.gridTemplateColumns = `repeat(${Math.ceil(Math.sqrt(numberOfCards))}, 100px)`;
 
     gameIcons.forEach((icon, index) => {
         const card = createCard(icon);
         board.appendChild(card);
 
-        // האנימציה מופעלת לכל קלף בנפרד עם דיליי
         setTimeout(() => {
             card.classList.add('show');
         }, index * 100);
@@ -85,9 +85,7 @@ function startGame(level) {
     
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  startGame(1);
-});
+
 
 function createCard(icon) {
     const card = document.createElement('div');

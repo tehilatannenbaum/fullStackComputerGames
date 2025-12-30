@@ -30,12 +30,16 @@ const Storage = {
     if (gameName) {
       if (!user.activities) user.activities = [];
 
-      const activity = user.activities.find(a => a.title === gameName);
+      const index = user.activities.findIndex(a => a.title === gameName);
 
-      if (activity) {
-          activity.points += points;
+      if (index !== -1) {
+        //update existing activity to be most recent
+        const activity = user.activities.splice(index, 1)[0];
+        activity.points += points;
+        user.activities.unshift(activity);
       } else {
-          user.activities.push({ title: gameName, points });
+        //add new activity
+        user.activities.unshift({ title: gameName, points });
       }
     }
     
