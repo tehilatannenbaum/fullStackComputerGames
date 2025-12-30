@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+body.login-body{
+  align-items: start;
+  margin: 70px;
+}
+
 .login-card{
   width: 380px;
   background: white;
