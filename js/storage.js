@@ -45,9 +45,6 @@ const Storage = {
     
     this.saveUsers(users);
 
-    const event = new CustomEvent('dataUpdated');
-    window.dispatchEvent(event);
-
     return user.score;
   },
   

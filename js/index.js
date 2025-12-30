@@ -2,7 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
     updateUI();
     devGames();
 
-    window.addEventListener('dataUpdated', updateUI);
+    window.addEventListener('storage', (event) => {
+        if (event.key === 'users') { 
+            updateUI();
+        }
+    });
 });
 
 function updateUI() {
